@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Polymarket Analytics Dashboard - Dark Glassmorphism Theme */
+
+@layer base {
+  :root {
+    /* Core backgrounds - deep space blue */
+    --background: 230 84% 5%;
+    --foreground: 226 100% 94%;
+
+    /* Cards/Panels - glassmorphism base */
+    --card: 230 50% 8%;
+    --card-foreground: 226 100% 94%;
+
+    /* Popover/Dropdowns */
+    --popover: 230 50% 12%;
+    --popover-foreground: 226 100% 94%;
+
+    /* Primary - vibrant violet gradient anchor */
+    --primary: 252 87% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - muted glass */
+    --secondary: 230 30% 15%;
+    --secondary-foreground: 226 70% 80%;
+
+    /* Muted surfaces */
+    --muted: 230 30% 12%;
+    --muted-foreground: 230 20% 55%;
+
+    /* Accent - soft indigo */
+    --accent: 246 80% 70%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Semantic colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+
+    /* Borders & inputs */
+    --border: 230 30% 18%;
+    --input: 230 30% 15%;
+    --ring: 252 87% 65%;
+
+    --radius: 0.75rem;
+
+    /* Custom dashboard tokens */
+    --glass-bg: 230 50% 8%;
+    --glass-border: 230 30% 20%;
+    --bullish: 160 84% 39%;
+    --bearish: 0 72% 51%;
+    --neutral: 38 92% 50%;
+    --whale: 38 92% 50%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(252, 87%, 65%) 0%, hsl(280, 87%, 55%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(230, 50%, 15%, 0.6) 0%, hsla(230, 50%, 8%, 0.8) 100%);
+    --gradient-bullish: linear-gradient(135deg, hsl(160, 84%, 39%) 0%, hsl(160, 84%, 50%) 100%);
+    --gradient-bearish: linear-gradient(135deg, hsl(0, 72%, 51%) 0%, hsl(0, 72%, 60%) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, hsl(230, 84%, 5%) 0%, hsl(230, 50%, 12%) 100%);
+    min-height: 100vh;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.7);
+  }
+}
+
+@layer components {
+  /* Glass panel effect */
+  .glass-panel {
+    background: hsl(var(--glass-bg) / 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+    box-shadow: 0 8px 32px 0 hsla(0, 0%, 0%, 0.37);
+    border-radius: var(--radius);
+  }
+
+  .glass-panel-hover:hover {
+    border-color: hsl(var(--glass-border) / 0.5);
+    box-shadow: 0 12px 40px 0 hsla(0, 0%, 0%, 0.45);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Status pulse animation */
+  .status-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Table row striping */
+  .table-striped tbody tr:nth-child(even) {
+    background: hsl(var(--muted) / 0.3);
+  }
+
+  .table-striped tbody tr:hover {
+    background: hsl(var(--primary) / 0.1);
+  }
+
+  /* Flash animation for updates */
+  .update-flash {
+    animation: flash 0.5s ease;
+  }
+
+  @keyframes flash {
+    0% { background: hsl(var(--primary) / 0.2); }
+    100% { background: transparent; }
+  }
+
+  /* Gauge needle animation */
+  .gauge-needle {
+    transition: transform 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Whale badge */
+  .whale-badge {
+    background: linear-gradient(135deg, hsl(var(--whale)) 0%, hsl(38, 92%, 40%) 100%);
+    color: hsl(0, 0%, 0%);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px hsl(var(--whale) / 0.4);
+  }
+
+  /* Alpha badge */
+  .alpha-badge {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(280, 87%, 55%) 100%);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 12px hsl(var(--primary) / 0.4);
+  }
+
+  /* Sentiment indicators */
+  .sentiment-bullish {
+    color: hsl(var(--bullish));
+  }
+
+  .sentiment-bearish {
+    color: hsl(var(--bearish));
+  }
+
+  .sentiment-neutral {
+    color: hsl(var(--neutral));
+  }
+
+  /* Improved select styling for high contrast */
+  select {
+    background: hsl(var(--input));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  select option {
+    background: hsl(230, 50%, 10%);
+    color: hsl(var(--foreground));
+    padding: 8px;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+  }
+
+  /* Input styling */
+  input[type="text"],
+  input[type="email"] {
+    background: hsl(var(--input));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+  }
+
+  /* Modal backdrop */
+  .modal-backdrop {
+    background: hsla(0, 0%, 0%, 0.85);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Clickable row */
+  .clickable-row {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .clickable-row:hover {
+    background: hsl(var(--primary) / 0.15);
+    transform: scale(1.005);
+  }
+
+  /* Stat card hover */
+  .stat-card {
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    background: hsl(var(--muted) / 0.6);
+  }
+
+  /* Market sentiment indicator */
+  .market-bullish-indicator {
+    background: linear-gradient(90deg, hsl(var(--bullish) / 0.2) 0%, transparent 100%);
+    border-left: 3px solid hsl(var(--bullish));
+  }
+
+  .market-bearish-indicator {
+    background: linear-gradient(90deg, hsl(var(--bearish) / 0.2) 0%, transparent 100%);
+    border-left: 3px solid hsl(var(--bearish));
+  }
+
+  .market-neutral-indicator {
+    background: linear-gradient(90deg, hsl(var(--neutral) / 0.1) 0%, transparent 100%);
+    border-left: 3px solid hsl(var(--neutral) / 0.5);
+  }
+}
