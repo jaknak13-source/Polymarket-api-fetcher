@@ -17,33 +17,30 @@ This project is an early MVP and **not yet production‑ready**. Some parts of t
 - React/Vite dashboard with Tailwind CSS and Recharts for data visualization.
 
 ---
-
-## Project Structure
-
+```
 Polymarket-api-fetcher/
-├── bot.py # Data fetcher and analytics engine
-├── main.py # FastAPI app, starts bot + serves API
-├── file_cache.py # File watcher and in-memory cache
-├── APIpublic.py # Optional standalone public API on port 8001
-├── requirements.txt # Python dependencies
-├── Dockerfile.txt # Docker setup for the backend
-├── fast launch bat/ # Windows batch files for quick launch
-├── routers/
-│ ├── api.py # REST routes
-│ └── ws.py # WebSocket routes
-├── data/ # Runtime JSON/CSV output (auto-generated)
-├── data_backup/ # Automatic backups (auto-generated)
-└── Dashboard/ # React/Vite frontend
-├── src/
-│ ├── config.ts # API URL config — edit this for your IP
-│ ├── components/
-│ ├── pages/
-│ ├── hooks/
-│ └── types/
-├── package.json
-└── vite.config.ts
-
-text
+├── bot.py                    # Data fetcher and analytics engine           
+├── main.py                   # FastAPI app, starts bot + serves API       
+├── file_cache.py             # File watcher and in-memory cache           
+├── APIpublic.py              # Optional standalone public API on port 8001
+├── requirements.txt          # Python dependencies                       
+├── Dockerfile.txt            # Docker setup for the backend               
+├── fast launch bat/          # Windows batch files for quick launch       
+├── routers/                                                            
+│   ├── api.py                # REST routes                               
+│   └── ws.py                 # WebSocket routes                          
+├── data/                     # Runtime JSON/CSV output (auto-generated)  
+├── data_backup/              # Automatic backups (auto-generated)        
+└── Dashboard/                # React/Vite frontend                       
+    ├── src/                                                       
+    │   ├── config.ts         # API URL config — edit this for your IP   
+    │   ├── components/                                            
+    │   ├── pages/                                         
+    │   ├── hooks/                                          
+    │   └── types/                                       
+    ├── package.json                                       
+    └── vite.config.ts                                    
+```
 
 ---
 
