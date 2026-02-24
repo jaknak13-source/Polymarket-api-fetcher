@@ -57,100 +57,115 @@ Make sure the following are installed before starting:
 
 ---
 
-## Installation
+## Installation Steps
 
-### 1. Clone the repository
+Follow these steps to set up and run the project locally.
 
+### 1. Clone Repository
 ```bash
 git clone https://github.com/jaknak13-source/Polymarket-api-fetcher.git
 cd Polymarket-api-fetcher
-2. Install Python dependencies
-bash
+```
+
+### 2. Backend Setup
+Create and activate a virtual environment, then install Python dependencies.
+
+```bash
 # Create virtual environment
 python -m venv .venv
 
-# Activate it — Windows:
+# Activate (Windows)
 .venv\Scripts\activate
 
-# Activate it — macOS/Linux:
+# Activate (macOS/Linux)
 source .venv/bin/activate
 
 # Install packages
 pip install -r requirements.txt
-3. Install frontend dependencies
-bash
+```
+
+### 3. Frontend Setup
+```bash
 cd Dashboard
 npm install
 cd ..
-4. Configure the API URL
-Open Dashboard/src/config.ts and update line 12 with your machine's local IP address:
+```
 
-ts
-: "http://<YOUR_LOCAL_IP>:8001";  // e.g. http://192.168.1.100:8001
-If you only access the dashboard from the same machine, line 11 is fine as-is:
+### 4. Configuration
+Edit `Dashboard/src/config.ts` to set your local IP (line 12):
 
-ts
-? "http://127.0.0.1:8000"
-Running the Project
-You need two terminals running at the same time.
+```ts
+: "http://<YOUR_LOCAL_IP>:8000";  // e.g. http://192.168.1.100:8000
+```
 
-Terminal 1 — Start the backend:
+For same-machine access, use `http://127.0.0.1:8000` (line 11).
 
-bash
+## Running the Project
+
+Use two terminals.
+
+### Terminal 1: Backend
+```bash
 python main.py
-Terminal 2 — Start the frontend:
+```
 
-bash
+### Terminal 2: Frontend
+```bash
 cd Dashboard
 npm run dev
-Then open your browser:
+```
 
-URL	What it is
-http://localhost:5173	Frontend dashboard
-http://localhost:8000/docs	Backend API docs
-http://localhost:8000/health	Health check
-Quick Launch (Windows only)
-Double-click the batch files inside fast launch bat/. Before using them, open each file and replace "your path" with your actual project folder path.
+Open in browser:
+- Dashboard: http://localhost:5173
+- API Docs: http://localhost:8000/docs
+- Health: http://localhost:8000/health 
 
-File	What it does
-launch backend main.bat	Starts the Python backend
-launch frontend.bat	Starts the frontend dashboard
-Public API launch.bat	Starts the optional public API on port 8001
-Docker (optional)
-bash
+## Quick Launch (Windows)
+Double-click files in `fast launch bat/`. Edit paths first (replace "your path").
+
+| File                  | Action                  |
+|-----------------------|-------------------------|
+| launch backend main.bat | Starts Python backend  |
+| launch frontend.bat    | Starts dashboard       |
+| Public API launch.bat  | Starts API on port 8001|
+
+## Docker (Optional)
+```bash
 docker build -f Dockerfile.txt -t polymarket-backend .
 docker run -p 8000:8000 polymarket-backend
-API Overview
-Base URL: http://localhost:8000
+```
 
-Endpoint	Description
-GET /api/trades/recent	Recent trades
-GET /api/trades/whales	Whale trades
-GET /api/traders/top	Top traders
-GET /api/markets	All market stats
-GET /api/markets/{market}	Single market stats
-GET /api/orderflow	Orderflow metrics
-GET /api/full/sorted	All trades sorted by size (CSV)
-GET /api/full/chrono	All trades chronological (CSV)
-WS /ws/trades	Live trade stream via WebSocket
-Troubleshooting
-Problem	Fix
-python: command not found	Try python3 instead
-pip install fails	Make sure virtual environment is activated
-npm install fails	Make sure Node.js 18+ is installed
-Dashboard shows no data	Start the backend first with python main.py
-CORS error in browser	Make sure backend runs on port 8000 and config.ts points to it
-Port already in use	Kill the process on that port or change it in main.py
-Contributing
-Pull requests and issues are welcome. Possible areas to improve:
+## API Endpoints
+Base: `http://localhost:8000`
 
-Additional analytics (P/L estimates, open interest proxies, more timeframes).
+| Endpoint              | Description                  |
+|-----------------------|------------------------------|
+| GET /api/trades/recent| Recent trades               |
+| GET /api/trades/whales| Whale trades                |
+| GET /api/traders/top  | Top traders                 |
+| GET /api/markets      | All market stats            |
+| GET /api/markets/{market} | Single market stats   |
+| GET /api/orderflow    | Orderflow metrics           |
+| GET /api/full/sorted  | Sorted trades (CSV)         |
+| GET /api/full/chrono  | Chronological trades (CSV)  |
+| WS /ws/trades         | Live trade WebSocket        | 
 
-More advanced visualizations or filters in the dashboard.
+## Troubleshooting
 
-Deployment recipes (Docker Compose, Kubernetes, etc.).
+| Problem                | Solution                              |
+|------------------------|---------------------------------------|
+| python: command not found | Use `python3`                        |
+| pip install fails     | Activate virtual environment         |
+| npm install fails     | Install Node.js 18+                  |
+| No data in dashboard  | Start backend first (`python main.py`)|
+| CORS error            | Check config.ts points to backend    |
+| Port in use           | Kill process or edit main.py port    | 
 
-License
-This project is licensed under the MIT License — see the LICENSE file for details.
-
-text
+## Contributing
+Welcome pull requests! Ideas:
+- Add P/L estimates, open interest.
+- Advanced dashboard filters/visuals.
+- Docker Compose/K8s deployment.
+  
+## License
+MIT License — see LICENSE file.
